@@ -30,11 +30,16 @@ def handler(event, context):
         # check bucket
         logging.info(f"EVT_BUCKET:{event['detail']['bucket']['name']}")
         if BUCKET == event["detail"]["bucket"]["name"]:
+            logging.info(f"EVT_OBJECT:{event['detail']['object']['key']}")
+
             # retrieve lambda function name
             match = re.search(r"^(.*)\.[^\.]+$", event["detail"]["object"]["key"])
 
             # check object
             if match is not None:
+                logging.info(f"EVT_VERSION:{event['detail']['object']['version-id']}")
+                logging.info(f"LAMBDA_FUNCTION_NAME:{match.group(1)}")
+
                 # update lambda function code
                 LDA.update_function_code(
                     FunctionName=match.group(1),
@@ -44,13 +49,13 @@ def handler(event, context):
                 )
 
             else:
-                logging.warning(f"Invalid Object:{event['detail']['object']['key']}")
+                logging.warning("Invalid Object!")
 
         else:
-            logging.warning("Invalid Bucket")
+            logging.warning("Invalid Bucket!")
 
     else:
-        logging.warning("Invalid Event")
+        logging.warning("Invalid Event!")
 
     # the end
     logging.info("This is the end")
