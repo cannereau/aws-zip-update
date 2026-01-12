@@ -36,7 +36,7 @@ unprocessed *Event* and *Lambda* invocations
 | prefix\_module | Prefix for naming AWS resources of this module | `string` | `"zip-update"` | no |
 | retention | Lambda logs retention in days | `number` | `30` | no |
 | runtime | Lambda runtime version | `string` | `"python3.14"` | no |
-| tags | Tags that will be applied to the module's resources | `map(string)` | n/a | yes |
+| tags | Tags that will be applied to the module's resources | `map(string)` | <pre>{<br/>  "DeploymentTool": "OpenTofu"<br/>}</pre> | no |
 
 ## Outputs
 

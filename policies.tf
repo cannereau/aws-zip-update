@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "running" {
     actions = [
       "s3:GetObject*"
     ]
-    resources = [format("arn:aws:s3:::%s", var.bucket)]
+    resources = [format("arn:aws:s3:::%s/*", var.bucket)]
   }
   statement {
     sid    = "LambdaRead"
