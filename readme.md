@@ -1,7 +1,7 @@
 # AWS Lambda ZIP Package automatic updates
 
 This is a Terraform module to build an AWS EventBridge rule
-which catches S3 ZIP Package POST events and
+which catches S3 ZIP Package POST/PUT events and
 triggers updates to Lambda functions
 
 
@@ -12,6 +12,8 @@ the Lambda Function named *my-code* will be automaticaly updated
 
 A common AWS SQS dead letter queue collects
 unprocessed *Event* and *Lambda* invocations
+
+> Prerequisite: AWS S3 Bucket with versioning and *EventBridge* notifications enabled
 
 <!-- BEGIN_TF_DOCS -->
 
