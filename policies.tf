@@ -13,6 +13,14 @@ data "aws_iam_policy_document" "lambda" {
 # policy for lambda running privileges
 data "aws_iam_policy_document" "running" {
   statement {
+    sid    = "S3Read"
+    effect = "Allow"
+    actions = [
+      "s3:GetObject*"
+    ]
+    resources = [format("arn:aws:s3:::%s", var.bucket)]
+  }
+  statement {
     sid    = "LambdaRead"
     effect = "Allow"
     actions = [
