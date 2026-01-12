@@ -9,7 +9,7 @@ logging.getLogger().setLevel(logging.INFO)
 # init globals
 BUCKET = ""
 if "BUCKET" in os.environ:
-    ENV_TAG = os.environ["BUCKET"]
+    BUCKET = os.environ["BUCKET"]
 
 # init boto3 clients
 LDA = boto3.client("lambda")
@@ -44,7 +44,7 @@ def handler(event, context):
                 )
 
             else:
-                logging.warning("Invalid Object")
+                logging.warning(f"Invalid Object:{event['detail']['object']['key']}")
 
         else:
             logging.warning("Invalid Bucket")
