@@ -1,0 +1,3 @@
+misconfigurations:
+  - id: AVD-AWS-0017 # Log group is not encrypted
+  - id: AVD-AWS-0066 # Function does not have tracing enabled

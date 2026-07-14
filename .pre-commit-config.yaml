@@ -1,33 +1,41 @@
 repos:
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v5.0.0
+  rev: v6.0.0
   hooks:
   - id: check-added-large-files
     args:
     - '--maxkb=50'
   - id: check-ast
   - id: check-builtin-literals
+  - id: check-case-conflict
+  - id: check-executables-have-shebangs
   - id: check-json
+  - id: check-merge-conflict
   - id: check-shebang-scripts-are-executable
+  - id: check-symlinks
   - id: check-yaml
     args:
     - '--unsafe'
   - id: detect-private-key
   - id: end-of-file-fixer
+  - id: pretty-format-json
+    args:
+    - '--autofix'
+    - '--no-sort-keys'
   - id: trailing-whitespace
     args:
     - '--markdown-linebreak-ext=md'
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.11.13
+  rev: v0.15.21
   hooks:
     - id: ruff-format
     - id: ruff-check
       args: [ --fix ]
 
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.99.0
+  rev: v1.108.0
   hooks:
   - id: terraform_fmt
   - id: terraform_validate
@@ -35,6 +43,9 @@ repos:
   - id: terraform_docs
     args:
       - --hook-config=--path-to-file=readme.md
+  - id: terraform_trivy
+    args:
+    - '--args=--ignorefile __GIT_WORKING_DIR__/.trivyignore.yaml'
   - id: terraform_checkov
     args:
     - '--args=--config-file __GIT_WORKING_DIR__/.checkov-config.yaml'
